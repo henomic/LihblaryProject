@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full bg-gray-100">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Profil Peminjam dan Daftar Buku</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body class="h-full">
+        <div class="min-h-full">
+            <header
+                class="bg-gradient-to-r from-purple-600 to-indigo-600 shadow"
+            >
+                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl font-bold tracking-tight text-white">
+                        Profil Peminjam dan Daftar Buku
+                    </h1>
+                </div>
+            </header>
+            <main>
+                <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+                    <!-- Profil Peminjam -->
+                    <div
+                        class="bg-white shadow overflow-hidden sm:rounded-lg mb-8"
+                    >
+                        <div
+                            class="px-4 py-5 sm:px-6 flex justify-between items-center"
+                        >
+                            <div>
+                                <h3
+                                    class="text-lg leading-6 font-medium text-gray-900"
+                                >
+                                    Profil Peminjam
+                                </h3>
+                                <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                                    Detail informasi dan statistik peminjaman
+                                </p>
+                            </div>
+                            <img
+                                class="h-20 w-20 rounded-full"
+                                src="https://randomuser.me/api/portraits/women/40.jpg"
+                                alt="Foto Profil"
+                            />
+                        </div>
+                        <div class="border-t border-gray-200">
+                            <dl>
+                                <div
+                                    class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                                >
+                                    <dt
+                                        class="text-sm font-medium text-gray-500"
+                                    >
+                                        Nama Lengkap
+                                    </dt>
+                                    <dd
+                                        class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                                    >
+                                        Siti Nurbaya
+                                    </dd>
+                                </div>
+                                <div
+                                    class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                                >
+                                    <dt
+                                        class="text-sm font-medium text-gray-500"
+                                    >
+                                        ID Anggota
+                                    </dt>
+                                    <dd
+                                        class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                                    >
+                                        PJM-2023-001
+                                    </dd>
+                                </div>
+                                <div
+                                    class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                                >
+                                    <dt
+                                        class="text-sm font-medium text-gray-500"
+                                    >
+                                        Email
+                                    </dt>
+                                    <dd
+                                        class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                                    >
+                                        siti.nurbaya@email.com
+                                    </dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <!-- Statistik Peminjaman -->
+                    <div
+                        class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 mb-8"
+                    >
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div
+                                        class="flex-shrink-0 bg-indigo-500 rounded-md p-3"
+                                    >
+                                        <i
+                                            class="fas fa-book text-white text-2xl"
+                                        ></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt
+                                                class="text-sm font-medium text-gray-500 truncate"
+                                            >
+                                                Total Buku Dipinjam
+                                            </dt>
+                                            <dd
+                                                class="text-3xl font-semibold text-gray-900"
+                                            >
+                                                24
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div
+                                        class="flex-shrink-0 bg-green-500 rounded-md p-3"
+                                    >
+                                        <i
+                                            class="fas fa-clock text-white text-2xl"
+                                        ></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt
+                                                class="text-sm font-medium text-gray-500 truncate"
+                                            >
+                                                Rata-rata Durasi Peminjaman
+                                            </dt>
+                                            <dd
+                                                class="text-3xl font-semibold text-gray-900"
+                                            >
+                                                12 hari
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div
+                                        class="flex-shrink-0 bg-yellow-500 rounded-md p-3"
+                                    >
+                                        <i
+                                            class="fas fa-star text-white text-2xl"
+                                        ></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt
+                                                class="text-sm font-medium text-gray-500 truncate"
+                                            >
+                                                Kategori Favorit
+                                            </dt>
+                                            <dd
+                                                class="text-3xl font-semibold text-gray-900"
+                                            >
+                                                Fiksi
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Daftar Buku Dipinjam -->
+                    <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                        <div class="px-4 py-5 sm:px-6">
+                            <h3
+                                class="text-lg leading-6 font-medium text-gray-900"
+                            >
+                                Daftar Buku Dipinjam
+                            </h3>
+                            <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                                Buku yang sedang dipinjam saat ini
+                            </p>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            Judul Buku
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            Penulis
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            Tanggal Peminjaman
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            Tanggal Pengembalian
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            Status
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody
+                                    class="bg-white divide-y divide-gray-200"
+                                >
+                                    <tr>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                                        >
+                                            Laskar Pelangi
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                        >
+                                            Andrea Hirata
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                        >
+                                            1 Mei 2023
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                        >
+                                            15 Mei 2023
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                                                >Dipinjam</span
+                                            >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                                        >
+                                            Bumi Manusia
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                        >
+                                            Pramoedya Ananta Toer
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                        >
+                                            20 April 2023
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                        >
+                                            4 Mei 2023
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
+                                                >Terlambat</span
+                                            >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                                        >
+                                            Pulang
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                        >
+                                            Tere Liye
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                        >
+                                            10 Mei 2023
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                        >
+                                            24 Mei 2023
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                                                >Dipinjam</span
+                                            >
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
+
+<div class="flex items-center px-4 py-4 sm:px-6">
+    <div class="flex min-w-0 flex-1 items-center">
+        <div class="flex-shrink-0">
+            <img
+                class="h-12 w-12 rounded-md"
+                src="/placeholder.svg?height=48&width=48"
+                alt="Sampul buku"
+            />
+        </div>
+        <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+            <div>
+                <p class="truncate text-sm font-medium text-indigo-600">
+                    Laskar Pelangi
+                </p>
+                <p class="mt-2 flex items-center text-sm text-gray-500">
+                    <span class="truncate">Andrea Hirata</span>
+                </p>
+            </div>
+            <div class="hidden md:block">
+                <div>
+                    <p class="text-sm text-gray-900">
+                        Dipinjam pada
+                        <time datetime="2023-01-23">23 Januari 2023</time>
+                    </p>
+                    <p class="mt-2 flex items-center text-sm text-gray-500">
+                        Jatuh tempo: 23 Februari 2023
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <svg
+            class="h-5 w-5 text-gray-400"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+        >
+            <path
+                fill-rule="evenodd"
+                d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                clip-rule="evenodd"
+            />
+        </svg>
+    </div>
+</div>
