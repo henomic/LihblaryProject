@@ -19,12 +19,16 @@
                         id="">
                 </div>
 
-                <div class="flex w-full gap-4 flex-col">
+                <div class="flex w-full gap-2 flex-col">
                     <button class="text-white bg-blue-700 w-full py-2 ">Login</button>
 
                     <p class="text-sm text-slate-800">Atau jika belum mempunyai akun bisa <a
                             class="text-base font-semibold text-blue-500" href="{{ route('auth.create') }}">Daftar
                             disisni</a> </p>
+
+                    <a href="{{ route('viewForgotPassword') }}" class="text-sm text-slate-600">
+                        Lupa passowrd?
+                    </a>
                     {{-- <a href="" class="text-white bg-slate-600 flex justify-center w-full py-2 ">Daftar</a> --}}
                 </div>
             </form>

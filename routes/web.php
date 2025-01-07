@@ -44,8 +44,11 @@ Route::middleware([checkTglPeminjaman::class, checkBooking::class, BannedCheck::
     //auth
     route::resource('auth', auth::class);
     route::post('LoginCek', [auth::class, 'cekLogin'])->name('LoginCek');
+    route::post('OtpCheck', [auth::class, 'otpCheck'])->name('otpCheck');
+    Route::get('otpCheck', [auth::class, 'ViewOtp'])->name('ViewOtp');
 
-
+    route::get('forgotPasswordView', [auth::class, 'forgotPasswordView'])->name('viewForgotPassword');
+    route::post('forgotPasswordCheck', [auth::class, 'forgotPasswordCheck'])->name('forgotPasswordCheck');
 
     //profil
     route::resource('PeminjamanBuku', bukuPeminjaman::class);
@@ -78,4 +81,9 @@ Route::middleware([checkTglPeminjaman::class, checkBooking::class, BannedCheck::
         route::resource('laporanStokBuku', LaporanStokBuku::class);
         route::resource('laporanBukuRusakAtauHilang', LaporanBukuRusakAtauHilang::class);
     });
+
+
+
+    Route::post('CreatePassword', [auth::class, 'CreatePassword'])->name('CreatePassword');
+    Route::get('ResetPassword/{param}', [auth::class, 'ResetPassword'])->name('ResetPassword');
 });

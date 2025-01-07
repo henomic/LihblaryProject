@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
     @vite('resources/css/app.css')
     @vite(['resources/css/app.css', 'resources/js/app.js'])`
     {{-- <link rel="stylesheet" href="{{ asset('css/print.css') }}"> --}}
@@ -186,7 +190,7 @@
                     </div>
                 </div>
             </aside>
-            <div class="konten flex p-5 flex-col w-full">
+            <div class="konten  flex p-5 flex-col w-full">
                 @yield('konten')
             </div>
         </main>

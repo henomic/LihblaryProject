@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailForgotPassword;
+use App\Mail\otpMail;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth as AuthCheck;
-// use Illuminate\Container\Attributes\Auth ;
+use Illuminate\Support\Facades\Mail as FacadesMail;
+use Mail;
+use Str;
+
 
 class auth extends Controller
 {
@@ -64,6 +71,83 @@ class auth extends Controller
         }
     }
 
+
+    public function forgotPasswordView(Request $request)
+    {
+
+        return view('Auth.forgotPassword.forgotSendEmail');
+    }
+
+    public function forgotPasswordCheck(Request $request)
+    {
+        $cek = User::where('email', $request->email);
+
+        if ($cek->exists()) {
+
+            $code = fake()->text(50);
+            $cryp = encrypt($code);
+
+            $mail = [
+                'email' => $request->email,
+                'time' => Carbon::now(),
+                'link' => $request->root() . '/ResetPassword/' . $cryp
+            ];
+
+
+            session()->put('code', $code);
+            session()->put('email', $request->email);
+            FacadesMail::to($request->email)->send(new MailForgotPassword($mail));
+
+
+            toast('Anda telah mengajukan penggantian password, check email anda sekarang juga', 'success');
+            return redirect()->back();
+        } else {
+            toast('Akun email yang anda masukkan belum terdaftar', 'error');
+            return redirect()->back()->with('error', 'Akun email tidak terverifikasi');
+        }
+    }
+
+
+
+
+    public function ResetPassword(string $param)
+    {
+        try {
+            if (session()->has('code') and session('code') === decrypt($param)) {
+                return view('Auth.forgotPassword.createNewPassword');
+            } else {
+                abort(404);
+            }
+        } catch (\Throwable) {
+            abort(404);
+        }
+    }
+
+
+
+    public function CreatePassword(Request $request)
+    {
+
+        // dd(session('email'));
+        $request->validate([
+            'password' => 'required|confirmed',
+        ], [
+            'password.required' => 'Password harus diisi',
+            'password.confirmed' => 'Password dan konfirmasi password harus sama',
+        ]);
+
+        $user = User::where('email', session('email'))->first();
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+
+        session()->forget('email');
+        session()->forget('code');
+
+        toast('Password berhasil diubah, silahkan login kembali', 'success');
+        return redirect()->route('auth.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -84,10 +168,12 @@ class auth extends Controller
             'nama' => 'required',
             'nik' => 'required|unique:users,nik',
             'username' => 'required|unique:users,username',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'foto' => 'required|image',
             'password' => 'required',
         ]);
+
+
 
 
         $foto = $request->foto;
@@ -104,10 +190,52 @@ class auth extends Controller
         $user->foto = $path;
         $user->password = Hash::make($request->password);
 
-        $user->save();
+        $otpRandom = mt_rand(100000, 999999);
 
-        toast('Berhasil membuat akun member', 'success');
-        return redirect()->route('auth.index');
+        $sendOtp = [
+            'email' => $request->email,
+            'otp' => $otpRandom,
+        ];
+
+        FacadesMail::to($request->email)->send(new otpMail($sendOtp));
+
+
+        session()->put('user', $user);
+        session()->put('otp', $otpRandom);
+        // dd(session('user'));
+
+        // toast('Berhasil membuat akun member', 'success');
+        return redirect()->route('ViewOtp');
+    }
+
+
+    public function ViewOtp()
+    {
+        return view('Auth.emailSender.otp.otp');
+    }
+    public function otpCheck(Request $request)
+    {
+        // dd($OTP = );
+
+        $dataArray = $request->except('_token');
+
+
+        $reqEmail = implode('', $dataArray);
+        $otp = session('otp');
+        if ((int) $otp === (int) $reqEmail) {
+            toast('Berhasil login', 'success');
+            $user = session('user');
+            $user->save();
+            session()->forget('user');
+            session()->forget('otp');
+            return redirect()->route('auth.index');
+        } else {
+            toast('Kode otp tidak valid', 'error');
+            return redirect()->back();
+        }
+
+
+        // return view('');
     }
 
     /**

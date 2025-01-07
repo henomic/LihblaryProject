@@ -15,18 +15,43 @@ class AdminAddKategori extends Controller
      */
     public function index(Request $request)
     {
-        //
 
-        $Galih_kategori = kategori::withCount('relasiBuku as bukuCount')
-            ->orderBy('bukuCount', 'asc');
 
-        if ($request->nama) {
-            $Galih_kategori->where('nama_kategori', 'LIKE', '%' . $request->nama . '%');
+
+
+        $Galih_kategori['data'] = kategori::withCount('relasiBuku as bukuCount')
+            ->orderBy('bukuCount', 'asc')->get()
+            ->map(function ($row) {
+                $row->created_at = $row->created_at->format('d F Y');
+                return $row;
+            });
+
+
+        // dd($Galih_kategori);
+
+        if ($request->ajax()) {
+            return datatables()->of($Galih_kategori['data'])
+                ->addColumn('aksi', function ($row) {
+                    $edit = '<a
+                                class="edit-btn font-medium  text-blue-600 cursor-pointer :text-blue-500 hover:underline">Edit</a>';
+                    $hapus = '';
+
+                    if ($row->bukuCount  <= 0) {
+                        $hapus = ' <a data-modal-target="hapus"
+                                    data-modal-toggle="hapus"
+                                    class="font-medium
+                                    cursor-pointer text-red-600 :text-blue-500 hover:underline">Delete</a>';
+                    }
+
+                    return $edit . ' ' . $hapus;
+                })
+                ->rawColumns(['aksi'])
+                ->make(true);
         }
 
 
-        $dataGalih['Galih_kategori'] = $Galih_kategori->get();
-        return view('admin.kategori.AddKategori', $dataGalih);
+
+        return view('admin.kategori.AddKategori');
     }
 
     /**
@@ -119,7 +144,10 @@ class AdminAddKategori extends Controller
             ->event('edit')
             ->log('membuat data kategori oleh ' . Auth::user()->level);
         toast('kategori ' . $request->kategori . '  berhasil di Update', 'success');
-        return redirect()->back();
+        return response()->json([
+            'success' => true,
+            
+        ]);
     }
 
     /**
