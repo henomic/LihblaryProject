@@ -46,9 +46,13 @@ Route::middleware([checkTglPeminjaman::class, checkBooking::class, BannedCheck::
     route::post('LoginCek', [auth::class, 'cekLogin'])->name('LoginCek');
     route::post('OtpCheck', [auth::class, 'otpCheck'])->name('otpCheck');
     Route::get('otpCheck', [auth::class, 'ViewOtp'])->name('ViewOtp');
+    Route::get('getTimeResent', [auth::class, 'getTimeResent'])->name('getTimeResent');
+    Route::post('ResentOtp', [auth::class, 'ResentOtp'])->name('ResentOtp');
 
-    route::get('forgotPasswordView', [auth::class, 'forgotPasswordView'])->name('viewForgotPassword');
     route::post('forgotPasswordCheck', [auth::class, 'forgotPasswordCheck'])->name('forgotPasswordCheck');
+    route::get('getSessiontime', [auth::class, 'getSessiontime'])->name('getSessiontime');
+    route::get('EmailCheck', [auth::class, 'EmailCheck'])->name('EmailCheck');
+    route::get('forgotPasswordView', [auth::class, 'forgotPasswordView'])->name('viewForgotPassword');
 
     //profil
     route::resource('PeminjamanBuku', bukuPeminjaman::class);
@@ -77,9 +81,15 @@ Route::middleware([checkTglPeminjaman::class, checkBooking::class, BannedCheck::
         route::resource('activityLog', activityLog::class);
         route::resource('stok', StokBukuControl::class);
         route::resource('laporanBukuFavorit', LaporanBukuFavorit::class);
-        route::resource('laporanPeminjamanBuku', LaporanPeminjamanBuku::class);
         route::resource('laporanStokBuku', LaporanStokBuku::class);
         route::resource('laporanBukuRusakAtauHilang', LaporanBukuRusakAtauHilang::class);
+
+        route::resource('laporanPeminjamanBuku', LaporanPeminjamanBuku::class);
+        route::post('excel', [LaporanPeminjamanBuku::class, 'excel'])->name('excelLaporanPeminjaman');
+        route::get('LinkExcel', [LaporanPeminjamanBuku::class, 'link'])->name('link');
+
+        route::get('halamanKategori', [AdminAddKategori::class, 'index'])->name('halamanKategori');
+        route::post('halamanKategori', [AdminAddKategori::class, 'store'])->name('storeKategori');
     });
 
 
